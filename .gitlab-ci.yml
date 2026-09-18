@@ -1,0 +1,11 @@
+stages:
+  - validate
+
+validate:yaml:
+  stage: validate
+  image: python:3.13.7-alpine3.22
+  interruptible: true
+  before_script:
+    - pip install --no-cache-dir PyYAML==6.0.2
+  script:
+    - python scripts/validate_yaml.py
