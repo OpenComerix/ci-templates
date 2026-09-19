@@ -51,6 +51,15 @@ test:unit:
     paths:
       - coverage/
 
+test:e2e:
+  extends: .opencomerix:node-pnpm
+  stage: test
+  rules:
+    - exists:
+        - test/**/*.e2e-spec.ts
+  script:
+    - pnpm test:e2e
+
 build:application:
   extends: .opencomerix:node-pnpm
   stage: build

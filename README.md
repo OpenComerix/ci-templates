@@ -7,7 +7,7 @@ Plantillas versionadas de GitLab CI para los repositorios de OpenComerix. El pri
 ```yaml
 include:
   - project: opencomerix/ci-templates
-    ref: v1.0.0
+    ref: v1.1.0
     file: /templates/node-pnpm.yml
 ```
 
@@ -21,6 +21,7 @@ El proyecto consumidor declara estos scripts en `package.json`:
 - `lint`: ejecuta el análisis estático;
 - `typecheck`: comprueba tipos sin generar artefactos;
 - `test:unit`: ejecuta pruebas unitarias una sola vez;
+- `test:e2e`: ejecuta las pruebas de extremo a extremo cuando el repositorio contiene `test/**/*.e2e-spec.ts`;
 - `build`: genera el artefacto de producción en `dist/`.
 
 La plantilla instala con `pnpm install --frozen-lockfile`, por lo que cada repositorio debe versionar `pnpm-lock.yaml` y declarar `"packageManager": "pnpm@12.4.2"`.
@@ -30,10 +31,12 @@ La plantilla instala con `pnpm install --frozen-lockfile`, por lo que cada repos
 | Etapa | Job |
 | --- | --- |
 | `validate` | `quality:format`, `quality:lint`, `quality:typecheck` |
-| `test` | `test:unit` |
+| `test` | `test:unit`, `test:e2e` cuando existen pruebas E2E |
 | `build` | `build:application` |
 
-Las pruebas de integración, contratos, seguridad, publicación y despliegue se agregan en cada tipo de proyecto cuando exista su infraestructura correspondiente.
+Las pruebas que requieren infraestructura adicional, los contratos, la seguridad, la publicación y el despliegue se agregan en cada tipo de proyecto cuando exista su infraestructura correspondiente.
+
+La versión `v1.1.0` incorpora el job E2E condicional. Debe publicarse el tag antes de integrar en los consumidores los cambios que actualizan su referencia.
 
 ## Versionado
 

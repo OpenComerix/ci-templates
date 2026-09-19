@@ -20,6 +20,7 @@ required_jobs = {
     "quality:lint",
     "quality:typecheck",
     "test:unit",
+    "test:e2e",
     "build:application",
 }
 missing_jobs = sorted(required_jobs.difference(template))
