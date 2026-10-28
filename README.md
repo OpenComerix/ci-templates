@@ -1,6 +1,12 @@
 # Plantillas CI de OpenComerix
 
-Plantillas versionadas de GitLab CI para los repositorios de OpenComerix. El primer contrato cubre proyectos TypeScript con Node.js `24.21.0` y pnpm `12.4.2`.
+Automatización compartida de OpenComerix en GitHub Actions, con plantillas GitLab históricas preservadas. Cubre proyectos TypeScript con Node.js `24.21.0` y pnpm `12.4.2`.
+
+## GitHub Actions
+
+`.github/actions/node-pnpm/action.yml` conserva las versiones fijadas, restaura solo las cachés de dependencias e instala siempre con lockfile congelado. Los consumidores fijan un SHA publicado completo; el escritor de caché sigue siendo el job propietario. Los workflows propios y consumidores conservan sus comandos, servicios y dependencias de artefactos. El acceso compartido del repositorio privado está limitado a otros repositorios del usuario `opencomerix`. La CI por SHA/ref exactos acredita cada publicación.
+
+Las secciones siguientes documentan las plantillas GitLab preservadas, cuyos tags y bytes publicados no se modifican durante el traslado.
 
 ## Uso desde un proyecto
 
