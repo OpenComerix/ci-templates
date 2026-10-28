@@ -3,3 +3,7 @@ node_modules/
 dist/
 coverage/
 *.log
+.corepack-cache/
+.pip-cache/
+.ci-artifacts/
+__pycache__/

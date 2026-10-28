@@ -5,7 +5,15 @@ validate:yaml:
   stage: validate
   image: python:3.13.7-alpine3.22
   interruptible: true
+  variables:
+    PIP_CACHE_DIR: $CI_PROJECT_DIR/.pip-cache
+  cache:
+    key: python3.13.7-alpine3.22-pyyaml6.0.2-v1
+    paths:
+      - .pip-cache/
+    policy: pull-push
   before_script:
-    - pip install --no-cache-dir PyYAML==6.0.2
+    - pip install PyYAML==6.0.2
   script:
     - python scripts/validate_yaml.py
+    - python -m unittest discover -s test -p 'test_*.py'
